@@ -1,10 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    // Suppress specific server errors in development
-    serverComponentsExternalPackages: [],
+    serverComponentsExternalPackages: ['mongoose']
   },
-  // Custom webpack config to suppress console warnings
+  images: {
+    domains: ['localhost', 'images.unsplash.com', 'plus.unsplash.com', 'teawebsite-f6328f6fe19f.herokuapp.com'],
+  },
+  // Production optimizations
+  compress: true,
+  poweredByHeader: false,
+  generateEtags: false,
+  
+  // Environment-specific configuration
+  env: {
+    CUSTOM_KEY: process.env.NODE_ENV,
+  },
+  
   webpack: (config, { dev, isServer }) => {
     if (dev) {
       // Suppress specific console warnings in development
@@ -19,8 +30,29 @@ const nextConfig = {
         originalConsoleError.apply(console, args);
       };
     }
+    
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+        crypto: false,
+      };
+    }
+    
+    // Suppress warnings about dynamic imports in development
+    config.ignoreWarnings = [
+      { message: /Critical dependency: the request of a dependency is an expression/ },
+      { message: /Route .* used `headers\(\)` should be awaited before using its value/ },
+    ];
+    
     return config;
-  }
-}
+  },
+  
+  // Netlify-specific optimizations
+  trailingSlash: false,
+  output: 'standalone',
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
