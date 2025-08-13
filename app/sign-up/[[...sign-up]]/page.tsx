@@ -38,7 +38,7 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="h-screen overflow-hidden bg-black text-white">
+    <div className="min-h-screen overflow-auto bg-black text-white">
       {/* Netflix-style Hero Section */}
       <div className="relative h-full">
         {/* Background with animated gradient */}
