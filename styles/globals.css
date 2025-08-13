@@ -4,4 +4,29 @@
 
 :root{ background: #FAF7F2; }
 
+/* Clerk Apple Icon Visibility Fix */
+.clerk-signin-container [data-provider="apple"] svg,
+.clerk-signin-container [data-provider="apple"] img,
+.cl-socialButtonsProviderIcon__apple,
+.cl-socialButtonsProviderIcon[data-provider="apple"] {
+  filter: brightness(0) invert(1) !important;
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+/* Additional Apple icon targeting */
+.cl-socialButtonsBlockButton[data-provider="apple"] svg,
+.cl-socialButtonsBlockButton[data-provider="apple"] img {
+  filter: brightness(0) invert(1) !important;
+  color: #ffffff !important;
+  fill: #ffffff !important;
+}
+
+/* Ensure Apple icon is always white on dark backgrounds */
+[data-provider="apple"] svg path,
+[data-provider="apple"] img {
+  fill: #ffffff !important;
+  color: #ffffff !important;
+}
+
 

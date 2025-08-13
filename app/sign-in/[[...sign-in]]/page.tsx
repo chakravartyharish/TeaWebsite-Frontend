@@ -38,7 +38,7 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="h-screen overflow-hidden bg-black text-white">
+    <div className="min-h-screen overflow-auto bg-black text-white">
       {/* Netflix-style Hero Section */}
       <div className="relative h-full">
         {/* Background with animated gradient */}
@@ -170,7 +170,16 @@ export default function SignInPage() {
                           }
                         },
                         socialButtonsProviderIcon__apple: {
-                          filter: 'brightness(0) invert(1)', // Makes Apple icon white
+                          filter: 'brightness(0) invert(1) !important', // Makes Apple icon white
+                          color: '#ffffff !important',
+                          fill: '#ffffff !important',
+                        },
+                        socialButtonsProviderIcon: {
+                          '&[data-provider="apple"]': {
+                            filter: 'brightness(0) invert(1) !important',
+                            color: '#ffffff !important',
+                            fill: '#ffffff !important',
+                          }
                         },
                         formButtonPrimary: {
                           backgroundColor: '#10b981',
