@@ -1,5 +1,10 @@
-import { Suspense } from "react";
+'use client';
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
+
+// Force dynamic rendering to avoid build-time prerendering issues
+export const dynamic = 'force-dynamic';
 
 interface Product {
   id: number;
@@ -8,41 +13,51 @@ interface Product {
   hero_image: string;
 }
 
-async function fetchProducts(): Promise<Product[]> {
-  try {
-    const API_BASE = process.env.NEXT_PUBLIC_USE_MOCK === '1' ? '' : (process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000");
-    const useMock = process.env.NEXT_PUBLIC_USE_MOCK === '1' || process.env.NEXT_PUBLIC_USE_MOCK === 'true';
-    const isServer = typeof window === 'undefined';
-    const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-    
-    // Always use MongoDB API - no more mock mode
-    const url = `${API_BASE}/api/products`;
-    
-    const response = await fetch(url, { 
-      cache: 'no-store',
-      headers: {
-        'Content-Type': 'application/json',
+function useProducts() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "https://teawebsite-f6328f6fe19f.herokuapp.com";
+        const url = `${API_BASE}/api/products`;
+        
+        const response = await fetch(url, { 
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        // Transform the data to match our Product interface
+        const transformedProducts = data.map((product: any) => ({
+          id: product.id,
+          slug: product.slug,
+          name: product.name,
+          hero_image: product.hero_image || product.image || '/placeholder-tea.jpg'
+        }));
+        
+        setProducts(transformedProducts);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setError(error instanceof Error ? error.message : 'Failed to fetch products');
+        setProducts([]);
+      } finally {
+        setLoading(false);
       }
-    });
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
     }
-    
-    const data = await response.json();
-    
-    // Ensure we return plain serializable objects
-    return Array.isArray(data) ? data.map(product => ({
-      id: Number(product.id),
-      slug: String(product.slug),
-      name: String(product.name),
-      hero_image: String(product.hero_image)
-    })) : [];
-    
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    return [];
-  }
+
+    fetchProducts();
+  }, []);
+
+  return { products, loading, error };
 }
 
 function ProductGrid({ products }: { products: Product[] }) {
@@ -75,8 +90,8 @@ function LoadingProducts() {
   );
 }
 
-export default async function Home(){
-  const products = await fetchProducts();
+export default function Home(){
+  const { products, loading, error } = useProducts();
 
   return (
     <div className="space-y-12">
@@ -132,9 +147,15 @@ export default async function Home(){
           <h2 className="font-heading text-3xl font-bold text-gray-900 mb-2">Our Tea Collection</h2>
           <p className="text-gray-600">Brewed with care. Sourced ethically.</p>
         </div>
-        <Suspense fallback={<LoadingProducts />}>
+        {loading ? (
+          <LoadingProducts />
+        ) : error ? (
+          <div className="text-center py-8">
+            <p className="text-red-600">Error loading products: {error}</p>
+          </div>
+        ) : (
           <ProductGrid products={products} />
-        </Suspense>
+        )}
       </section>
     </div>
   )

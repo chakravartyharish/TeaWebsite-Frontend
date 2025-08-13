@@ -1,0 +1,6 @@
+# Netlify redirects file for Next.js SPA routing
+/*    /index.html   200
+
+# API proxy to backend
+/api/products/*  https://teawebsite-f6328f6fe19f.herokuapp.com/api/products/:splat  200
+/api/auth/*      https://teawebsite-f6328f6fe19f.herokuapp.com/api/auth/:splat      200
