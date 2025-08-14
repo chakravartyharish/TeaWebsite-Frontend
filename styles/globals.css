@@ -4,6 +4,26 @@
 
 :root{ background: #FAF7F2; }
 
+/* Custom animations for floating elements */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(5deg); }
+  50% { transform: translateY(-5px) rotate(-3deg); }
+  75% { transform: translateY(-15px) rotate(3deg); }
+}
+
+/* Smooth background transitions */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Enhanced pulse animation */
+@keyframes enhanced-pulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
 /* Clerk Apple Icon Visibility Fix */
 .clerk-signin-container [data-provider="apple"] svg,
 .clerk-signin-container [data-provider="apple"] img,

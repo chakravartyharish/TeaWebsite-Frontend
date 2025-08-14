@@ -213,192 +213,200 @@ export default function HomePage() {
   // Show meditative homepage for authenticated users
   return (
     <div className="bg-gradient-to-br from-green-50 via-tea-cream to-green-100 text-[#1b1b1b]">
-      {/* Stunning A-ZEN Hero Section - Netflix Inspired */}
-      <section className="relative min-h-screen overflow-hidden flex items-center justify-center">
-        {/* Animated Background Layers */}
+      {/* Cinematic A-ZEN Hero Section - Premium Dark Aesthetic */}
+      <section className="relative min-h-screen overflow-hidden">
+        {/* Ultra-Premium Background System */}
         <div className="absolute inset-0">
-          {/* Base gradient inspired by Netflix dark theme */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${heroSlides[currentSlide].bgGradient} transition-all duration-3000`}></div>
+          {/* Primary Netflix-inspired Dark Base */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
           
-          {/* Atmospheric radial gradients for depth */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-600/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-green-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+          {/* Dynamic Cinematic Overlays */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${heroSlides[currentSlide].bgGradient} opacity-40 transition-all duration-[4000ms]`}></div>
           
-          {/* Floating particles */}
-          <div className="absolute inset-0 opacity-15">
-            {[...Array(25)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute text-2xl animate-bounce"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 8}s`,
-                  animationDuration: `${6 + Math.random() * 4}s`
-                }}
-              >
-                {['🍃', '✨', '🌿', '🕊', '☕'][Math.floor(Math.random() * 5)]}
-              </div>
-            ))}
+          {/* Atmospheric Depth Layers */}
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="absolute top-1/4 left-1/3 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] animate-pulse"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-red-500/8 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '2s' }}></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-amber-500/5 rounded-full blur-[80px] animate-pulse" style={{ animationDelay: '4s' }}></div>
           </div>
           
-          {/* Netflix-style gradient overlays */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
+          {/* Netflix-Style Cinematic Vignette */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent via-40% to-black/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50"></div>
+          <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-black/30"></div>
         </div>
 
-        {/* Centered Main Content Container */}
-        <div className="relative w-full max-w-8xl mx-auto px-6 py-20">
-          <div className="grid lg:grid-cols-2 gap-16 items-center justify-center min-h-[80vh]">
-            
-            {/* Left Side - Brand & Product Info */}
-            <div className="text-center lg:text-left space-y-10 flex flex-col justify-center">
-              {/* Brand Header - Netflix Style */}
-              <div className="space-y-8 text-center lg:text-left">
-                {/* A-ZEN Title - Cinematic Style */}
-                <div className="space-y-6">
-                  <h2 className="text-7xl lg:text-8xl font-black bg-gradient-to-r from-red-500 via-red-600 to-white bg-clip-text text-transparent leading-none tracking-tight drop-shadow-2xl">
-                    A-ZEN
+        {/* Main Content Grid */}
+        <div className="relative w-full min-h-screen flex items-center">
+          <div className="w-full max-w-8xl mx-auto px-8 py-16">
+            <div className="grid lg:grid-cols-12 gap-12 items-center min-h-[85vh]">
+              
+              {/* Left Content - Brand & Details */}
+              <div className="lg:col-span-7 space-y-12 text-center lg:text-left">
+                
+                {/* Brand Identity Section */}
+                <div className="space-y-8">
+                  {/* INNER VEDA Logo */}
+                  <div className="inline-flex items-center space-x-4 group">
+                    <div className="w-14 h-14 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full flex items-center justify-center shadow-2xl group-hover:scale-110 transition-all duration-500">
+                      <span className="text-white text-xl">🍃</span>
+                    </div>
+                    <div className="text-left">
+                      <div className="text-lg font-bold text-emerald-300 tracking-[3px]">INNER VEDA</div>
+                      <div className="text-xs text-gray-400 tracking-wide">ANCIENT WISDOM FOR MODERN LIVING</div>
+                    </div>
+                  </div>
+                  
+                  {/* Massive A-ZEN Title */}
+                  <div className="space-y-6">
+                    <h1 className="text-8xl lg:text-9xl font-black leading-none tracking-tight">
+                      <span className="bg-gradient-to-r from-white via-emerald-200 to-white bg-clip-text text-transparent drop-shadow-2xl">
+                        A-ZEN
+                      </span>
+                    </h1>
+                    
+                    {/* Animated Accent Line */}
+                    <div className="flex justify-center lg:justify-start">
+                      <div className="relative">
+                        <div className="h-1 w-48 bg-gradient-to-r from-emerald-400 via-teal-400 to-transparent rounded-full"></div>
+                        <div className="absolute top-0 left-0 h-1 w-12 bg-white rounded-full animate-pulse"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Product Promise */}
+                <div className="space-y-6 max-w-2xl mx-auto lg:mx-0">
+                  <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
+                    CALM & FOCUSED MIND
+                    <span className="block text-emerald-300">+ RADIANT SKIN</span>
                   </h2>
-                  <div className="flex justify-center lg:justify-start">
-                    <div className="h-2 w-40 bg-gradient-to-r from-red-600 via-red-500 to-transparent rounded-full shadow-lg"></div>
+                  
+                  <div className="space-y-4">
+                    <p className="text-xl lg:text-2xl text-emerald-200 font-medium tracking-wide">
+                      INSTANT TEA/LATTE MIX
+                    </p>
+                    <p className="text-lg text-gray-300 leading-relaxed">
+                      Just add hot milk or water. Hand-crafted with 5 sacred herbs combining ancient wisdom with modern convenience.
+                    </p>
                   </div>
                 </div>
-                
-                {/* Product Benefits - Enhanced Typography */}
-                <div className="space-y-6">
-                  <h3 className="text-3xl lg:text-4xl font-bold text-white leading-tight drop-shadow-lg">
-                    CALM & FOCUSED MIND + RADIANT SKIN
-                  </h3>
-                  <p className="text-xl lg:text-2xl text-red-300 font-semibold tracking-wide">
-                    INSTANT TEA/LATTE MIX - JUST ADD HOT MILK/WATER
-                  </p>
-                  <p className="text-lg lg:text-xl text-green-300 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                    Hand crafted with 5 sacred herbs. Ancient wisdom for modern mind.
-                  </p>
-                </div>
-              </div>
 
-              {/* Key Features Grid - Netflix Cards Style */}
-              <div className="grid grid-cols-2 gap-6 max-w-2xl mx-auto lg:mx-0">
-                {[
-                  { icon: '🍵', title: '16 CUPS', desc: 'Long lasting blend' },
-                  { icon: '✅', title: 'PURE & SAFE', desc: 'Natural ingredients' },
-                  { icon: '🌱', title: 'PLANT BASED', desc: '100% herbal formula' },
-                  { icon: '⚡', title: 'INSTANT MIX', desc: 'Quick & easy prep' }
-                ].map((item, index) => (
-                  <div key={index} className="relative bg-gray-900/60 backdrop-blur-xl border border-red-500/30 rounded-2xl p-6 hover:bg-gray-800/70 hover:border-red-400/50 transition-all duration-300 group hover:scale-105 hover:shadow-2xl hover:shadow-red-500/20">
-                    <div className="text-center space-y-3">
-                      <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                        <span className="text-xl">{item.icon}</span>
+                {/* Feature Highlights Grid */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-3xl mx-auto lg:mx-0">
+                  {[
+                    { icon: '☕', title: '16 CUPS', desc: 'Long lasting' },
+                    { icon: '✓', title: 'PURE & SAFE', desc: '100% natural' },
+                    { icon: '🌱', title: 'PLANT BASED', desc: 'Herbal formula' },
+                    { icon: '⚡', title: 'INSTANT MIX', desc: 'Quick prep' }
+                  ].map((item, index) => (
+                    <div key={index} className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 hover:bg-white/10 hover:border-emerald-400/30 transition-all duration-300">
+                      <div className="text-center space-y-2">
+                        <div className="text-2xl mb-2">{item.icon}</div>
+                        <div className="text-xs font-bold text-white tracking-wide">{item.title}</div>
+                        <div className="text-xs text-gray-400">{item.desc}</div>
                       </div>
-                      <div className="font-bold text-white text-base tracking-wide">{item.title}</div>
-                      <div className="text-sm text-gray-300 leading-relaxed">{item.desc}</div>
                     </div>
-                    {/* Hover glow effect */}
-                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-red-600/0 via-red-600/10 to-red-600/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+
+                {/* Premium CTA Section */}
+                <div className="flex flex-col sm:flex-row gap-6 pt-8 justify-center lg:justify-start">
+                  <Link href="/products" className="group relative bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-12 py-5 rounded-2xl font-bold text-xl hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-emerald-500/25 overflow-hidden">
+                    <div className="relative flex items-center justify-center gap-4 z-10">
+                      <span className="text-2xl group-hover:scale-110 transition-transform duration-300">▶</span>
+                      <span>Experience A-ZEN - ₹249</span>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 transform translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
+                  </Link>
+                  
+                  <Link href="/showcase" className="bg-white/10 backdrop-blur-sm text-white px-12 py-5 rounded-2xl font-semibold text-xl hover:bg-white/15 transition-all duration-300 border border-white/20 hover:border-white/30 hover:scale-105">
+                    Discover More
+                  </Link>
+                </div>
               </div>
 
-              {/* CTA Buttons - Netflix Style */}
-              <div className="flex flex-col sm:flex-row gap-6 pt-8 justify-center lg:justify-start">
-                <Link href="/products" className="group relative bg-gradient-to-r from-red-600 to-red-700 text-white px-10 py-5 rounded-xl font-bold text-xl hover:from-red-700 hover:to-red-800 transition-all duration-300 transform hover:scale-105 shadow-2xl overflow-hidden min-w-[280px] text-center">
-                  <div className="relative flex items-center justify-center gap-4 z-10">
-                    <span className="text-2xl group-hover:rotate-12 transition-transform duration-300">▶</span>
-                    <span>Shop A-ZEN - ₹249</span>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 transform translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-1000"></div>
-                </Link>
-                <Link href="/showcase" className="bg-gray-900/60 backdrop-blur-xl text-white px-10 py-5 rounded-xl font-semibold text-xl hover:bg-gray-800/80 transition-all duration-300 border border-gray-600/50 hover:border-gray-500 hover:scale-105 shadow-xl min-w-[280px] text-center">
-                  Learn More About A-ZEN
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Side - Enhanced Product Visual */}
-            <div className="relative flex items-center justify-center min-h-[600px]">
-              {/* Main Product Container with Netflix-style effects */}
-              <div className="relative transform hover:scale-105 transition-transform duration-500">
-                {/* Atmospheric glow effects */}
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 via-green-500/20 to-red-500/20 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute inset-0 bg-gradient-to-br from-green-400/30 to-red-400/30 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-                
-                {/* Product Image Container (inspired by actual product) */}
-                <div className="relative w-96 h-96 mx-auto">
-                  {/* Main product circle (like the product packaging) */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-200 via-green-300 to-green-400 rounded-full shadow-2xl animate-pulse border-4 border-white/20">
-                    <div className="absolute inset-6 bg-gradient-to-br from-green-100 to-green-200 rounded-full flex flex-col items-center justify-center space-y-3 shadow-inner">
-                      {/* Logo area - Enhanced */}
-                      <div className="w-16 h-16 bg-gradient-to-br from-gray-900 to-black rounded-full flex items-center justify-center mb-3 shadow-lg border-2 border-green-400/30">
-                        <span className="text-green-300 text-2xl animate-pulse">🍃</span>
-                      </div>
-                      
-                      {/* INNER VEDA text - Enhanced */}
-                      <div className="text-black font-black text-xl tracking-wider drop-shadow-sm">INNER VEDA</div>
-                      
-                      {/* A-ZEN large text - Enhanced */}
-                      <div className="text-black font-black text-5xl tracking-wider leading-none drop-shadow-md">A-ZEN</div>
-                      
-                      {/* Subtitle - Enhanced */}
-                      <div className="text-black text-sm text-center px-6 font-bold leading-tight tracking-wide">CALM & FOCUSED MIND + RADIANT SKIN</div>
-                      
-                      {/* Tea cup with leaves - Enhanced */}
-                      <div className="relative mt-6">
-                        <div className="w-20 h-16 bg-gradient-to-br from-amber-800 to-amber-900 rounded-full relative shadow-lg">
-                          <div className="w-4 h-10 bg-gradient-to-br from-amber-800 to-amber-900 absolute -right-1 top-3 rounded-r-full shadow-md"></div>
-                          <div className="absolute inset-2 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full shadow-inner"></div>
-                          {/* Steam effect */}
-                          <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-                            <div className="w-1 h-3 bg-white/60 rounded-full animate-pulse"></div>
-                            <div className="w-1 h-2 bg-white/40 rounded-full animate-pulse ml-1 -mt-1" style={{ animationDelay: '0.5s' }}></div>
-                          </div>
+              {/* Right Visual - Product Showcase */}
+              <div className="lg:col-span-5 relative flex items-center justify-center">
+                <div className="relative w-full max-w-md">
+                  
+                  {/* Atmospheric Product Glow */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/20 via-teal-400/20 to-emerald-400/20 rounded-full blur-3xl animate-pulse"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-300/15 to-emerald-500/15 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+                  
+                  {/* Main Product Container */}
+                  <div className="relative w-80 h-80 lg:w-96 lg:h-96 mx-auto transform hover:scale-105 transition-all duration-700">
+                    
+                    {/* Product Package Circle */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-100 via-emerald-200 to-emerald-300 rounded-full shadow-2xl border-4 border-white/30">
+                      <div className="absolute inset-4 bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-full shadow-inner flex flex-col items-center justify-center space-y-3">
+                        
+                        {/* Logo Icon */}
+                        <div className="w-12 h-12 bg-gradient-to-br from-gray-800 to-black rounded-full flex items-center justify-center mb-2 shadow-lg">
+                          <span className="text-emerald-400 text-lg">🍃</span>
                         </div>
-                        {/* Enhanced leaves around cup */}
-                        <div className="absolute -top-2 -left-3 text-green-600 text-lg animate-bounce">🍃</div>
-                        <div className="absolute -top-2 -right-3 text-green-600 text-lg animate-bounce" style={{ animationDelay: '1s' }}>🍃</div>
-                        <div className="absolute -bottom-2 -left-4 text-green-600 text-base animate-bounce" style={{ animationDelay: '2s' }}>🍃</div>
-                        <div className="absolute -bottom-2 -right-4 text-green-600 text-base animate-bounce" style={{ animationDelay: '1.5s' }}>🍃</div>
+                        
+                        {/* Brand Text */}
+                        <div className="text-gray-800 font-black text-base tracking-[2px] drop-shadow-sm">INNER VEDA</div>
+                        
+                        {/* Product Name */}
+                        <div className="text-gray-900 font-black text-4xl lg:text-5xl tracking-wider leading-none drop-shadow-md">A-ZEN</div>
+                        
+                        {/* Tagline */}
+                        <div className="text-gray-700 text-xs text-center px-4 font-bold leading-tight tracking-wide max-w-[200px]">
+                          CALM & FOCUSED MIND + RADIANT SKIN
+                        </div>
+                        
+                        {/* Tea Cup Visual */}
+                        <div className="relative mt-4">
+                          <div className="w-16 h-12 bg-gradient-to-br from-amber-800 to-amber-900 rounded-full relative shadow-lg">
+                            <div className="w-3 h-8 bg-gradient-to-br from-amber-800 to-amber-900 absolute -right-0.5 top-2 rounded-r-full"></div>
+                            <div className="absolute inset-1.5 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full"></div>
+                          </div>
+                          
+                          {/* Floating Tea Leaves */}
+                          <div className="absolute -top-1 -left-2 text-emerald-600 text-sm animate-bounce">🍃</div>
+                          <div className="absolute -top-1 -right-2 text-emerald-600 text-sm animate-bounce" style={{ animationDelay: '1s' }}>🍃</div>
+                          <div className="absolute -bottom-1 -left-3 text-emerald-600 text-xs animate-bounce" style={{ animationDelay: '2s' }}>🍃</div>
+                          <div className="absolute -bottom-1 -right-3 text-emerald-600 text-xs animate-bounce" style={{ animationDelay: '1.5s' }}>🍃</div>
+                        </div>
+                        
+                        {/* Bottom Product Details */}
+                        <div className="text-gray-800 font-bold text-sm mt-3 tracking-wide">INSTANT TEA/LATTE MIX</div>
+                        <div className="text-gray-700 text-xs font-medium tracking-wide">JUST ADD HOT MILK/WATER</div>
                       </div>
-                      
-                      {/* Bottom text - Enhanced */}
-                      <div className="text-black font-bold text-base mt-4 tracking-wide">INSTANT TEA/LATTE MIX</div>
-                      <div className="text-black text-sm font-medium tracking-wide">JUST ADD HOT MILK/WATER</div>
+                    </div>
+                    
+                    {/* Floating Benefit Icons */}
+                    <div className="absolute -top-6 -left-6 w-12 h-12 bg-emerald-500/20 backdrop-blur-sm rounded-full flex items-center justify-center animate-float" style={{animationDuration: '4s'}}>
+                      <span className="text-lg">🧘</span>
+                    </div>
+                    <div className="absolute -top-4 -right-8 w-10 h-10 bg-teal-500/20 backdrop-blur-sm rounded-full flex items-center justify-center animate-float" style={{animationDelay: '1s', animationDuration: '4s'}}>
+                      <span className="text-base">✨</span>
+                    </div>
+                    <div className="absolute -bottom-6 -left-4 w-11 h-11 bg-green-500/20 backdrop-blur-sm rounded-full flex items-center justify-center animate-float" style={{animationDelay: '2s', animationDuration: '4s'}}>
+                      <span className="text-sm">🌿</span>
+                    </div>
+                    <div className="absolute -bottom-4 -right-6 w-9 h-9 bg-emerald-600/20 backdrop-blur-sm rounded-full flex items-center justify-center animate-float" style={{animationDelay: '3s', animationDuration: '4s'}}>
+                      <span className="text-sm">💚</span>
                     </div>
                   </div>
-                  
-                  {/* Floating elements around product */}
-                  <div className="absolute -top-8 -left-8 w-16 h-16 bg-green-500/30 rounded-full flex items-center justify-center animate-bounce" style={{animationDelay: '0s', animationDuration: '3s'}}>
-                    <span className="text-2xl">🧘‍♀️</span>
-                  </div>
-                  <div className="absolute -top-4 -right-12 w-12 h-12 bg-emerald-500/30 rounded-full flex items-center justify-center animate-bounce" style={{animationDelay: '1s', animationDuration: '3s'}}>
-                    <span className="text-xl">✨</span>
-                  </div>
-                  <div className="absolute -bottom-8 -left-6 w-14 h-14 bg-green-600/30 rounded-full flex items-center justify-center animate-bounce" style={{animationDelay: '2s', animationDuration: '3s'}}>
-                    <span className="text-lg">🌿</span>
-                  </div>
-                  <div className="absolute -bottom-4 -right-8 w-10 h-10 bg-teal-500/30 rounded-full flex items-center justify-center animate-bounce" style={{animationDelay: '1.5s', animationDuration: '3s'}}>
-                    <span className="text-sm">🍃</span>
-                  </div>
-                  
-                  {/* Glow effects */}
-                  <div className="absolute inset-0 bg-green-400/20 rounded-full blur-3xl animate-pulse"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Enhanced Slide Indicators */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3">
+        {/* Elegant Slide Navigation */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4">
           {heroSlides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`transition-all duration-300 rounded-full ${
+              className={`transition-all duration-500 rounded-full ${
                 index === currentSlide 
-                  ? 'w-12 h-3 bg-green-400' 
-                  : 'w-3 h-3 bg-white/40 hover:bg-white/60'
+                  ? 'w-12 h-2 bg-emerald-400 shadow-lg' 
+                  : 'w-2 h-2 bg-white/30 hover:bg-white/50 hover:scale-125'
               }`}
             />
           ))}

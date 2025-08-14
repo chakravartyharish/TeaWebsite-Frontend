@@ -24,6 +24,11 @@ const config: Config = {
       fontFamily: {
         heading: ["Playfair Display", "serif"],
         body: ["Inter", "sans-serif"]
+      },
+      animation: {
+        'float': 'float 4s ease-in-out infinite',
+        'shimmer': 'shimmer 2s infinite',
+        'enhanced-pulse': 'enhanced-pulse 3s ease-in-out infinite'
       }
     }
   },
