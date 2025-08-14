@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { getCart, getTotals, clearCart, CartItem } from '@/lib/cart';
+import { QRCodeDisplay } from '@/components/qr-code-generator';
 
 export default function OrderSuccess() {
   const [orderDetails, setOrderDetails] = useState({
@@ -241,6 +242,96 @@ export default function OrderSuccess() {
                   <span className="text-sm font-medium text-gray-400">Coming Soon</span>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Order Tracking QR Code */}
+        <div className="bg-gradient-to-r from-gray-800 to-gray-900 rounded-3xl p-8 lg:p-12 mb-12 shadow-2xl border border-gray-700/50">
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-2xl">📱</span>
+            </div>
+            <h2 className="text-3xl font-bold text-white mb-4">Track Your Order</h2>
+            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+              Scan this QR code to track your order status and get delivery updates
+            </p>
+          </div>
+          
+          <div className="flex justify-center">
+            <QRCodeDisplay
+              qrCodeData={JSON.stringify({
+                type: 'order_tracking',
+                order_id: orderDetails.orderId,
+                phone: '+91XXXXXXXXXX', // In real app, get from form data
+                url: `https://innerveda.netlify.app/track-order/${orderDetails.orderId}`,
+                timestamp: new Date().toISOString()
+              })}
+              title={`Order #${orderDetails.orderId}`}
+              description="Scan to track your order"
+              size={200}
+              showDownload={true}
+            />
+          </div>
+          
+          <div className="text-center mt-6">
+            <p className="text-gray-400 text-sm">
+              You can also track your order by visiting our website and entering your order ID
+            </p>
+            <div className="mt-4">
+              <Link 
+                href={`/track-order/${orderDetails.orderId}`}
+                className="inline-flex items-center space-x-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <span>📦</span>
+                <span>Track Order Online</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Feedback QR Code */}
+        <div className="bg-gradient-to-r from-purple-900/30 to-purple-800/30 rounded-3xl p-8 lg:p-12 mb-12 shadow-2xl border border-purple-700/50">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div>
+              <div className="w-16 h-16 bg-purple-600/20 rounded-full flex items-center justify-center mb-4">
+                <span className="text-2xl">⭐</span>
+              </div>
+              <h2 className="text-2xl font-bold text-white mb-4">Share Your Experience</h2>
+              <p className="text-gray-300 mb-6">
+                Once you receive your order, we'd love to hear about your tea experience! 
+                Your feedback helps us improve and helps other customers find their perfect blend.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link 
+                  href="/feedback"
+                  className="inline-flex items-center space-x-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors"
+                >
+                  <span>📝</span>
+                  <span>Leave Feedback</span>
+                </Link>
+                <button
+                  onClick={() => navigator.share?.({
+                    title: 'Inner Veda Tea Store',
+                    text: 'Just ordered amazing tea from Inner Veda!',
+                    url: 'https://innerveda.netlify.app'
+                  })}
+                  className="inline-flex items-center space-x-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+                >
+                  <span>📤</span>
+                  <span>Share</span>
+                </button>
+              </div>
+            </div>
+            
+            <div className="flex justify-center">
+              <QRCodeDisplay
+                qrCodeData="https://innerveda.netlify.app/feedback"
+                title="Feedback Form"
+                description="Scan to leave your review"
+                size={150}
+                showDownload={true}
+              />
             </div>
           </div>
         </div>

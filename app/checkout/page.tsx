@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { CartItem, getCart, getTotals } from '@/lib/cart';
+import { QRCodeDisplay } from '@/components/qr-code-generator';
 
 declare global {
   interface Window {
@@ -25,6 +26,7 @@ export default function Checkout() {
   const [razorpayLoaded, setRazorpayLoaded] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('razorpay');
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [showUPIQR, setShowUPIQR] = useState(false);
 
   // Load cart data from localStorage
   useEffect(() => {
@@ -181,6 +183,13 @@ export default function Checkout() {
 
     if (paymentMethod === 'razorpay') {
       await handleRazorpayPayment();
+    } else if (paymentMethod === 'upi-qr') {
+      // For UPI QR, show instructions and wait for manual confirmation
+      alert('Please complete the UPI payment and wait for confirmation. Your order will be processed once payment is verified.');
+      // In a real implementation, you would poll for payment status or use webhooks
+      setTimeout(() => {
+        window.location.href = '/order-success';
+      }, 3000);
     } else {
       await handleCODOrder();
     }
@@ -435,7 +444,55 @@ export default function Checkout() {
                       </div>
                     </div>
                   </div>
+                  
+                  <div className={`p-4 rounded-xl border-2 transition-all cursor-pointer ${
+                    paymentMethod === 'upi-qr' 
+                      ? 'border-red-500 bg-red-500/10' 
+                      : 'border-gray-600 bg-gray-800/50 hover:border-red-500/50'
+                  }`} onClick={() => setPaymentMethod('upi-qr')}>
+                    <div className="flex items-center space-x-3">
+                      <input 
+                        type="radio" 
+                        id="upi-qr" 
+                        name="payment" 
+                        value="upi-qr" 
+                        checked={paymentMethod === 'upi-qr'}
+                        onChange={(e) => setPaymentMethod(e.target.value)}
+                        className="text-red-500 focus:ring-red-500 bg-gray-800 border-gray-600"
+                      />
+                      <div>
+                        <label htmlFor="upi-qr" className="font-medium text-white cursor-pointer flex items-center space-x-2">
+                          <span className="text-lg">📱</span>
+                          <span>UPI QR Code</span>
+                        </label>
+                        <p className="text-sm text-gray-400 mt-1">Scan QR code to pay via UPI apps (GPay, PhonePe, Paytm)</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                
+                {paymentMethod === 'upi-qr' && (
+                  <div className="mt-6 p-6 bg-gray-800/50 rounded-xl border border-gray-600">
+                    <div className="text-center">
+                      <h4 className="text-lg font-semibold text-white mb-4">Pay via UPI QR Code</h4>
+                      <QRCodeDisplay
+                        qrCodeData={`upi://pay?pa=innerveda@upi&pn=Inner Veda&am=${total}&cu=INR&tn=Order ${Date.now()}`}
+                        title={`₹${total}`}
+                        description="Scan with any UPI app to pay"
+                        size={200}
+                        showDownload={false}
+                      />
+                      <div className="flex justify-center gap-4 mt-4">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Google_Pay_%28GPay%29_Logo.svg" alt="GPay" className="h-8" />
+                        <img src="https://logos-world.net/wp-content/uploads/2020/11/PhonePe-Logo.png" alt="PhonePe" className="h-8" />
+                        <img src="https://logoeps.com/wp-content/uploads/2013/03/paytm-vector-logo.png" alt="Paytm" className="h-8" />
+                      </div>
+                      <p className="text-sm text-gray-400 mt-4">
+                        After successful payment, please wait for confirmation.
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
 
               <button
@@ -447,8 +504,10 @@ export default function Checkout() {
                   {isProcessing 
                     ? 'Processing...' 
                     : paymentMethod === 'razorpay' 
-                      ? `🔒 Pay Securely - ₹${total}` 
-                      : `📦 Place Order (COD) - ₹${total}`
+                      ? `🔒 Pay Securely - ₹${total}`
+                      : paymentMethod === 'upi-qr'
+                        ? `📱 Complete UPI Payment - ₹${total}`
+                        : `📦 Place Order (COD) - ₹${total}`
                   }
                 </span>
                 {!isProcessing && <span>→</span>}

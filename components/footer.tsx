@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { QRCodeDisplay } from './qr-code-generator';
 
 export default function Footer(){
   return (
@@ -61,6 +62,56 @@ export default function Footer(){
               <li><Link href="/terms" className="text-gray-400 hover:text-white transition-colors duration-200 block py-1">Terms of Service</Link></li>
               <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors duration-200 block py-1">FAQ</Link></li>
             </ul>
+          </div>
+        </div>
+
+        {/* QR Codes Section */}
+        <div className="border-t border-gray-800 py-12">
+          <div className="text-center mb-8">
+            <h3 className="font-semibold text-white text-xl mb-2">Quick Access</h3>
+            <p className="text-gray-400">Scan QR codes for instant access to our services</p>
+          </div>
+          
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="text-center">
+              <QRCodeDisplay
+                qrCodeData="https://innerveda.netlify.app"
+                title="Website"
+                description="Scan to visit our website"
+                size={120}
+                showDownload={false}
+              />
+            </div>
+            
+            <div className="text-center">
+              <QRCodeDisplay
+                qrCodeData="https://instagram.com/innerveda.in"
+                title="Instagram"
+                description="Follow us @innerveda.in"
+                size={120}
+                showDownload={false}
+              />
+            </div>
+            
+            <div className="text-center">
+              <QRCodeDisplay
+                qrCodeData={`BEGIN:VCARD\nVERSION:3.0\nFN:Inner Veda Support\nORG:Inner Veda Tea Store\nTEL:+919113920980\nEMAIL:innervedacare@gmail.com\nURL:https://innerveda.netlify.app\nEND:VCARD`}
+                title="Contact"
+                description="Save our contact info"
+                size={120}
+                showDownload={false}
+              />
+            </div>
+            
+            <div className="text-center">
+              <QRCodeDisplay
+                qrCodeData="https://innerveda.netlify.app/feedback"
+                title="Feedback"
+                description="Share your experience"
+                size={120}
+                showDownload={false}
+              />
+            </div>
           </div>
         </div>
 
