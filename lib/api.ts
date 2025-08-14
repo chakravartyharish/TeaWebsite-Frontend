@@ -1,7 +1,7 @@
 const useMock = (process.env.NEXT_PUBLIC_USE_MOCK === '1' || process.env.NEXT_PUBLIC_USE_MOCK === 'true');
 const isServer = typeof window === 'undefined'
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-export const API_BASE = useMock ? '' : (process.env.NEXT_PUBLIC_API_BASE || "https://teawebsite-f6328f6fe19f.herokuapp.com");
+export const API_BASE = useMock ? '' : (process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000");
 
 function toUrl(path: string) {
   // Special handling for frontend API routes - always use frontend API route

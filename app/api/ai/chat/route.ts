@@ -36,9 +36,10 @@ async function generateAITeaResponse(message: string): Promise<string> {
   console.log('🔍 DEBUG: OPENAI_API_KEY length:', process.env.OPENAI_API_KEY?.length || 0);
 
   if (!process.env.OPENAI_API_KEY) {
-    console.log('❌ No OpenAI API key found');
+    console.log('❌ No OpenAI API key found in environment variables');
+    console.log('🔍 Available env vars:', Object.keys(process.env).filter(key => key.includes('OPENAI')));
     // Fallback response when OpenAI API key is not configured
-    return "Hi! I'm your tea expert assistant. I'd love to help you discover the perfect tea, but I need an OpenAI API key to provide personalized recommendations. Please configure your API key to unlock my full tea expertise! 🍃";
+    return "Hi! I'm your Inner Veda tea expert assistant 🍃 I'd love to help you discover the perfect tea and provide brewing guidance, but my AI capabilities are currently unavailable. Please contact our team at innervedacare@gmail.com for personalized tea recommendations!";
   }
 
   try {
@@ -65,10 +66,28 @@ async function generateAITeaResponse(message: string): Promise<string> {
 // Add a simple GET endpoint for testing
 export async function GET() {
   console.log('🔍 GET request to chat API - route is working!');
+  const apiKeyExists = !!process.env.OPENAI_API_KEY;
+  const apiKeyLength = process.env.OPENAI_API_KEY?.length || 0;
+  const apiKeyPrefix = process.env.OPENAI_API_KEY?.substring(0, 7) || 'none';
+  
+  console.log('🔍 Environment check:', {
+    apiKeyExists,
+    apiKeyLength,
+    apiKeyPrefix,
+    nodeEnv: process.env.NODE_ENV,
+    netlifyEnv: process.env.NETLIFY,
+  });
+  
   return NextResponse.json({ 
     status: 'Chat API route is working!',
     timestamp: new Date().toISOString(),
-    openaiConfigured: !!process.env.OPENAI_API_KEY
+    environment: {
+      openaiConfigured: apiKeyExists,
+      apiKeyLength,
+      apiKeyPrefix,
+      isNetlify: !!process.env.NETLIFY,
+      nodeEnv: process.env.NODE_ENV
+    }
   });
 }
 

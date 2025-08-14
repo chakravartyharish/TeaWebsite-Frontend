@@ -56,6 +56,7 @@ export default function Footer(){
             <h3 className="font-semibold text-white text-lg mb-6 tracking-tight">Support</h3>
             <ul className="space-y-4">
               <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors duration-200 block py-1">Contact Us</Link></li>
+              <li><Link href="/feedback" className="text-gray-400 hover:text-white transition-colors duration-200 block py-1">Feedback</Link></li>
               <li><Link href="/privacy" className="text-gray-400 hover:text-white transition-colors duration-200 block py-1">Privacy Policy</Link></li>
               <li><Link href="/terms" className="text-gray-400 hover:text-white transition-colors duration-200 block py-1">Terms of Service</Link></li>
               <li><Link href="/faq" className="text-gray-400 hover:text-white transition-colors duration-200 block py-1">FAQ</Link></li>
