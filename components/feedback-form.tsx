@@ -36,7 +36,7 @@ export default function FeedbackForm({ productId, orderId, onClose, isModal = fa
         rating: formData.rating || undefined
       }
 
-      await apiPost('/feedback', submitData)
+      await apiPost('/api/feedback', submitData)
       setIsSubmitted(true)
       
       setTimeout(() => {
