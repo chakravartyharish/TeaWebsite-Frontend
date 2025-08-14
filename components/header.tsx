@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation"
 
 export default function Header(){
   const [scrolled, setScrolled] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -17,6 +18,14 @@ export default function Header(){
   }, [])
 
   const isActive = (path: string) => pathname === path
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false)
+  }
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -109,11 +118,20 @@ export default function Header(){
             </SignedIn>
 
             {/* Compact Mobile Menu Button */}
-            <button className="md:hidden relative group w-8 h-8 flex items-center justify-center rounded-full bg-gray-800/50 hover:bg-green-600/20 transition-all duration-300">
+            <button 
+              onClick={toggleMobileMenu}
+              className="md:hidden relative group w-8 h-8 flex items-center justify-center rounded-full bg-gray-800/50 hover:bg-green-600/20 transition-all duration-300"
+            >
               <div className="relative">
-                <div className="w-4 h-0.5 bg-gray-300 group-hover:bg-green-400 transition-colors duration-300 relative">
-                  <span className="absolute -top-1.5 left-0 w-4 h-0.5 bg-gray-300 group-hover:bg-green-400 transition-colors duration-300"></span>
-                  <span className="absolute top-1.5 left-0 w-4 h-0.5 bg-gray-300 group-hover:bg-green-400 transition-colors duration-300"></span>
+                <div className={`w-4 h-0.5 bg-gray-300 group-hover:bg-green-400 transition-all duration-300 relative ${
+                  mobileMenuOpen ? 'rotate-45 translate-y-0' : ''
+                }`}>
+                  <span className={`absolute left-0 w-4 h-0.5 bg-gray-300 group-hover:bg-green-400 transition-all duration-300 ${
+                    mobileMenuOpen ? 'opacity-0' : '-top-1.5'
+                  }`}></span>
+                  <span className={`absolute left-0 w-4 h-0.5 bg-gray-300 group-hover:bg-green-400 transition-all duration-300 ${
+                    mobileMenuOpen ? '-rotate-90 translate-y-0' : 'top-1.5'
+                  }`}></span>
                 </div>
               </div>
               
@@ -123,6 +141,82 @@ export default function Header(){
           </div>
         </div>
       </div>
+
+      {/* Mobile Navigation Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl border-b border-green-500/20 shadow-2xl">
+          <div className="px-4 py-6 space-y-4">
+            {/* Mobile Navigation Links */}
+            {[
+              { href: '/', label: 'Home', icon: '🏠' },
+              { href: '/products', label: 'Products', icon: '🍃' },
+              { href: '/showcase', label: 'A-ZEN', icon: '✨' },
+              { href: '/cart', label: 'Cart', icon: '🛒' }
+            ].map((item) => (
+              <Link 
+                key={item.href}
+                href={item.href} 
+                onClick={closeMobileMenu}
+                className={`relative group flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
+                  isActive(item.href)
+                    ? 'text-green-300 bg-green-600/20 border border-green-500/30'
+                    : 'text-gray-300 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                <span className="text-lg">{item.icon}</span>
+                <span>{item.label}</span>
+                
+                {/* Active indicator */}
+                {isActive(item.href) && (
+                  <div className="absolute right-4 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                )}
+                
+                {/* Hover effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-green-600/0 via-green-600/5 to-green-600/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+              </Link>
+            ))}
+
+            {/* Mobile Auth Section */}
+            <div className="pt-4 border-t border-gray-700/50">
+              <SignedOut>
+                <SignInButton mode="modal">
+                  <button 
+                    onClick={closeMobileMenu}
+                    className="w-full relative group bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-3 rounded-xl font-bold text-base hover:from-green-700 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105 shadow-xl overflow-hidden"
+                  >
+                    {/* Button content */}
+                    <div className="relative flex items-center justify-center space-x-2">
+                      <span className="text-lg">🔐</span>
+                      <span>Sign In</span>
+                    </div>
+                    
+                    {/* Shimmer effect */}
+                    <div className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+                  </button>
+                </SignInButton>
+              </SignedOut>
+              
+              <SignedIn>
+                <SignOutButton redirectUrl="/">
+                  <button 
+                    onClick={closeMobileMenu}
+                    className="w-full relative group text-gray-300 hover:text-white font-medium transition-all duration-300 px-6 py-3 border border-gray-600 hover:border-green-500 rounded-xl hover:bg-green-500/10 overflow-hidden text-base"
+                  >
+                    {/* Button content */}
+                    <div className="relative flex items-center justify-center space-x-2">
+                      <span className="text-lg">👋</span>
+                      <span>Sign Out</span>
+                    </div>
+                    
+                    {/* Hover background */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-green-600/0 to-green-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </button>
+                </SignOutButton>
+              </SignedIn>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   )
 }
